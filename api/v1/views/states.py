@@ -73,11 +73,8 @@ def update_value(state_id):
 
 @app_views.route("/states/<state_id>", methods=["DELETE"], strict_slashes=False)
 def delete_obj(state_id):
-    """
-    deletes an object using its id
-    """
+    """deletes an object using its id"""
     Obj = storage.get("State", str(state_id))
-
     if Obj is None:
         abort(404)
 

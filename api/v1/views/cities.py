@@ -78,12 +78,9 @@ def put_city(city_id):
     fetched_obj.save()
     return jsonify(fetched_obj.to_dict())
 
-
 @app_views.route("/cities/<city_id>",  methods=["DELETE"], strict_slashes=False)
 def del_city(city_id):
-    """
-    delete request
-    """
+    """delete request"""
     obj = storage.get("City", str(city_id))
 
     if obj is None:
