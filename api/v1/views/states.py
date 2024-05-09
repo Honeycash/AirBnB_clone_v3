@@ -71,7 +71,7 @@ def update_value(state_id):
     return jsonify(Obj.to_dict()), 200
 
 
-@app_views.route("/states/<state_id>", methods=["DELETE"], strict_slashes=False)
+@app_views.route("/states/<state_id>",methods=["DELETE"],strict_slashes=False)
 def delete_obj(state_id):
     """deletes an object using its id"""
     Obj = storage.get("State", str(state_id))
