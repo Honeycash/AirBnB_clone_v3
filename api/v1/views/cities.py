@@ -8,7 +8,7 @@ from flask import jsonify, request, abort
 from models.city import City
 
 
-@app_views.route("/states/<state_id>/cities",methods=["GET"],strict_slashes=False)
+@app_views.route("/states/<state_id>/cities", methods=["GET"], strict_slashes=False)
 def all_cities(state_id):
     """
     retrieves city based on state id
@@ -37,7 +37,7 @@ def allCities(city_id):
     return jsonify(obj.to_dict())
 
 
-@app_views.route("/states/<state_id>/cities",methods=["POST"],strict_slashes=False)
+@app_views.route("/states/<state_id>/cities", methods=["POST"], strict_slashes=False)
 def city_post(state_id):
     """
     post request for cities
@@ -78,9 +78,12 @@ def put_city(city_id):
     fetched_obj.save()
     return jsonify(fetched_obj.to_dict())
 
+
 @app_views.route("/cities/<city_id>",  methods=["DELETE"], strict_slashes=False)
 def del_city(city_id):
-    """delete request"""
+    """
+    delete request
+    """
     obj = storage.get("City", str(city_id))
 
     if obj is None:
