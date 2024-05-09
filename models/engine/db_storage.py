@@ -80,6 +80,8 @@ class DBStorage:
         retrieve an object from the file storage by clas and id. """
 
         if cls and id:
+            if isinstance(cls, str):
+                cls = globals()[cls]
             if cls in classes.values() and isinstance(id, str):
                 all_objects = self.all(cls)
                 for key, value in all_objects.items():
