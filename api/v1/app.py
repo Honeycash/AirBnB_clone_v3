@@ -3,15 +3,13 @@
 """
 flask app
 """
-from flask import Flask, jsonify, make_response
+from flask import Flask
 from models import storage
 from api.v1.views import app_views
 from os import getenv
-from flask_cors import CORS
+
 
 app = Flask(__name__)
-
-CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 app.register_blueprint(app_views)
 
@@ -25,13 +23,13 @@ def close(exception):
 
 
 @app.errorhandler(404)
-def not_found(err):
+def not_found(error):
     """
     handle the 404 error page
     """
-    txt = {"error": "Not found"}
-    return make_response(jsonify(txt), 404)
-
-
+    response = {"error": "Not found"}
+  
 if __name__ == "__main__":
-    app.run(getenv("HBNB_API_HOST"), getenv("HBNB_API_PORT"), debug=True)
+  HOST= getenv('HBNB_API_HOST', '0.0.0.0')
+  PORT = int(getenv('HBNB_API_PORT', 5000))
+  app.run(host=HOST, port=PORT,  threaded=True)
